@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Jr's Responsive Calendar</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+    <link rel="stylesheet" type="text/css" href="css/styles.css" />
+</head>
+
+<body>
+
+    <div class="calendar">
+        <h1 class="month_year"></h1>
+        <ul class="weekdays">
+            <li>Sunday</li>
+            <li>Monday</li>
+            <li>Tuesday</li>
+            <li>Wednesday</li>
+            <li>Thursday</li>
+            <li>Friday</li>
+            <li>Saturday</li>
+        </ul>
+        <ul class="days"></ul>
+        <div class="eventholder hide">
+            <div id="sliderWrap">
+                <div id="slider">
+                    <div id="openCloseWrap">
+                        <a href="#" class="close_event">
+                            <img src="img/down_arrow.png" alt="close">
+                        </a>
+                    </div>
+                    <div id="sliderContent">
+                        <p class="float_label">
+                            <label for="txtEvent"></label>
+                            <input type="text" id="txtEvent" class="add_calendar_event" placeholder="Add an event" size="35">
+                            <label for="selPriority"></label>
+                            <select id="selPriority" class="importance">
+                                <option value="very-important">Very Important</option>
+                                <option value="important">Important</option>
+                                <option value="normal">Normal</option>
+                                <option value="low-priority">Low</option>
+                                <option value="personal">Personal</option>
+                            </select>
+                            <button class="create_event">Create</button>
+                        </p>
+                    </div>
+                </div>
+                <div id="openCloseIdentifier"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/vendor/jquery.min.js"></script>
+    <script type="text/javascript" src="js/calendar.js"></script>
+</body>
+
+</html>
