@@ -29,7 +29,7 @@ $(function () {
         var fill;
         var i;
         var dayClassName;
-        var dayCount = md.today + 1; //set counter to today's day of the week
+        var dayCount = md.firstDayOfMonth; //set counter to the first day of the month
         var weekDays = {
             "0": "Sunday",
             "1": "Monday",
