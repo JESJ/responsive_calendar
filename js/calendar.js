@@ -51,7 +51,7 @@ $(function () {
                 filler = true;
             }
 			//Detection of today's date is the current value of itteration
-            i == md.todaysDate ? dayClassName = "calendar_day_today" : dayClassName = "calendar_day";
+            i === md.todaysDate ? dayClassName = "calendar_day_today" : dayClassName = "calendar_day";
             days.append('<li class="' + dayClassName + ' inMonth"><div class="date"><span class="long day">' + weekDays[dayCount] + '</span> <span class="date">' + i + '</span></div><div class="events"></div></li>');
 			//Check resetter for day counter
             dayCount === 6 ? dayCount = 0 : dayCount++;
