@@ -39,6 +39,7 @@ $(function () {
             s = this.settings;
             this.populateCalendar();
             d = s.domElements();
+            this.checkPlaceholder();
         },
 
         //Function that to get the current month details, used to populate the calendar. 
@@ -90,6 +91,7 @@ $(function () {
                 //Check resetter for day counter
                 dayCount === 6 ? dayCount = 0 : dayCount++;
             }
+
             //Filler for days of next month month
             if (filler === true) {
                 for (fill = 7; fill > md.lastDayOfMonth; fill--) {
@@ -122,11 +124,18 @@ $(function () {
                     dayClickedEle.parent().css('background-color', "#f00");
                     setTimeout(function () { dayClickedEle.parent().css('background-color', "#fff"); }, 500);
                 }
+
+                if (typeof document.createElement("input").placeholder === 'undefined') {
+                    if (d.eventInput.val() === '' || d.eventInput.val() === d.eventInput.attr('placeholder')) {
+                        d.eventInput.addClass('placeholder');
+                        d.eventInput.val(d.eventInput.attr('placeholder'));
+                    }
+                }
             });
 
             //Add event to the DOM if it'c clicked and has value.
             d.createEventButton.on('click', function () {
-                if (eventDetails.val().trim()) {
+                if (eventDetails.val().trim() && eventDetails.val().trim() !== d.eventInput.attr('placeholder')) {
                     var eventValLong = eventDetails.val();
                     var eventValShort = eventDetails.val().substr(0, 14);
                     dayClickedEle.append('<div class="event ' + $('.importance').val() + '"><a href="#" title="' + eventDetails.val() + '"><span class="short">' + eventValShort + '</span><span class="long">' + eventValLong + '</span></a></div>');
@@ -168,7 +177,29 @@ $(function () {
             d.eventSlider.animate({ marginBottom: "-159px" }, 500);
             d.openCloseIdentifier.show();
             setTimeout(function () { d.addEventContainer.hide(); }, 500);
+        },
+
+
+        //Unsupported browsers placeholder check function to improve user interaction. 
+        checkPlaceholder: function () {
+            if (typeof document.createElement("input").placeholder === 'undefined') {
+                $('[placeholder]').focus(function () {
+                    var input = $(this);
+                    if (input.val() === input.attr('placeholder')) {
+                        input.val('');
+                        input.removeClass('placeholder');
+
+                    }
+                }).blur(function () {
+                    var input = $(this);
+                    if (input.val() === '' || input.val() === input.attr('placeholder')) {
+                        input.addClass('placeholder');
+                        input.val(input.attr('placeholder'));
+                    }
+                });
+            }
         }
+
     };
 
     AddCalendar.init();
