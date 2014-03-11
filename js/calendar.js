@@ -108,6 +108,9 @@ $(function () {
                 }
             }
         });
+		
+		//Prevent default on all anchors 
+		$('a').click(function (e) { e.preventDefault(); });
 
         //function to check tallest li and adjust the others, then returns calculated height. 
         function matchHeights() {

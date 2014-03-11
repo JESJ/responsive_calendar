@@ -150,9 +150,10 @@ $(function () {
             });
 
             //close event if close button is clicked
-            d.closeEventButton.on('click', function () {
-                t.hideEventAdder();
-            });
+            d.closeEventButton.on('click', function () { t.hideEventAdder(); });
+			
+			//Prevent default on all anchors 
+			$('a').click(function (e) { e.preventDefault(); });
         },
 
         //function to check tallest li and adjust the others, then returns calculated height. 
